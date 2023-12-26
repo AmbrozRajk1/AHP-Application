@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>AHP Application</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <h1>AHP Application</h1>
+        <!--<table class="styled-table">
+            <tr>
+                <th>Intensity of Importance</th>
+                <th>Definition</th>
+                <th>Reciprocals</th>
+            </tr>
+            <tr><td>1</td><td>Equal Importance</td><td>1</td></tr>
+            <tr><td>2</td><td>Between Equal and Moderate</td><td>1/2</td></tr>
+            <tr><td>3</td><td>Moderate Importance</td><td>1/3</td></tr>
+            <tr><td>4</td><td>Between Moderate and Strong</td><td>1/4</td></tr>
+            <tr><td>5</td><td>Strong Importance</td><td>1/5</td></tr>
+            <tr><td>6</td><td>Between Strong and Very Strong</td><td>1/6</td></tr>
+            <tr><td>7</td><td>Very Strong Importance</td><td>1/7</td></tr>
+            <tr><td>8</td><td>Between Very Strong and Extreme</td><td>1/8</td></tr>
+            <tr><td>9</td><td>Extreme Importance</td><td>1/9</td></tr>
+        </table>-->
+        <button class="styled-button" onclick="preparePairWiseTables()">Prepare Pair-wise tables</button>
+        <table>
+            <tr>
+                <td style="vertical-align: top;">
+                    <h2>Add Item</h2>
+                    <input type="text" id="itemInput" placeholder="Enter item name">
+                    <button onclick="addItem('itemTable')">Add</button>
+
+                    <h2>Item List</h2>
+                    <table id="itemTable" class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td style="vertical-align: top;">
+                    <h2>Add Criteria</h2>
+                    <input type="text" id="criteriaInput" placeholder="Enter criteria">
+                    <button onclick="addItem('criteriaTable')">Add</button>
+
+                    <h2>Criteria List</h2>
+                    <table id="criteriaTable" class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Criteria Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        
+        <h1 id="step2h1" style="display: none;">STEP 2: Pair-wise comparison matrix</h1>
+        <table id="pairWiseTables">
+            <tr id="pairWiseRow">
+
+            </tr>
+        </table>
+
+        <table id="pairWiseTablesCriteria">
+            <tr id="pairWiseRowCriteria">
+
+            </tr>
+        </table>
+
+        <h1 id="step3h1" style="display: none;">STEP 3: Items - Normalize matrix (sum columns)</h1>
+        <table id="step3table">
+            <tr id="step3row">
+
+            </tr>
+        </table>
+
+        <h1 id="step3ah1" style="display: none;">STEP 3a: Items - Normalize matrix (divide by column sum)</h1>
+        <table id="step3atable">
+            <tr id="step3arow">
+
+            </tr>
+        </table>
+
+        <h1 id="step4h1" style="display: none;">STEP 4: Items - Develop priority vector</h1>
+        <table id="step4table">
+            <tr id="step4row">
+
+            </tr>
+        </table>
+
+        <h1 id="step5h1" style="display: none;">STEP 5: Items - Priority vector table</h1>
+        <table id="step5table">
+            <tr id="step5row">
+
+            </tr>
+        </table>
+
+        <h1 id="step6h1" style="display: none;">STEP 6: Criteria - Normalizing matrix and developing priority vector</h1>
+        <table id="step6table">
+            <tr id="step6row">
+
+            </tr>
+        </table>
+
+        <h1 id="step7h1" style="display: none;">STEP 7: Overall priority vector</h1>
+        <table id="step7table">
+            <tr id="step7row">
+
+            </tr>
+        </table>
+    </body>
+
+    <script src="ahp.js"></script>
+</html>
