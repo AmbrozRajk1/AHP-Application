@@ -111,6 +111,7 @@ function preparePairWiseTables() {
         }
 
         var newTD = document.createElement("td");
+        newTD.style.textAlign = "center";
         newTD.style.verticalAlign = "top";
         var criteriaTableName = document.createElement("h2");
         criteriaTableName.innerHTML = criteria[i];
@@ -162,6 +163,7 @@ function preparePairWiseTables() {
     }
 
     var newTD = document.createElement("td");
+    newTD.style.textAlign = "center";
     newTD.style.verticalAlign = "top";
     var criteriaTableName = document.createElement("h2");
     criteriaTableName.innerHTML = "CRITERIA";
