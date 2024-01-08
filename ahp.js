@@ -224,6 +224,20 @@ function calculateAHP() {
         pairWiseRow.removeChild(pairWiseRow.firstChild);
     }
 
+    var exportButton = document.getElementById("exportBtn");
+    if (exportButton) {
+        exportButton.parentNode.removeChild(exportButton);
+    }
+
+    itemCriteriaAOA = [];
+    step2AOA = [];
+    step3AOA = [];
+    step3aAOA = [];
+    step4AOA = [];
+    step5AOA = [];
+    step6AOA = [];
+    step7AOA = [];
+
     var items = [];
     var criteria = [];
 
@@ -286,11 +300,13 @@ function calculateAHP() {
         for (var j = 1; j < trTableElements.length; j++) {
             var newTableRow = document.createElement("tr");
             var newTRAOA = [];
+            var newTRAOA2 = [];
             var newTH = document.createElement("td");
             newTH.style.textAlign = "right";
             newTH.innerHTML = "<strong>" + items[j-1] + "</strong>"
             newTableRow.appendChild(newTH);
             newTRAOA.push(items[j-1]);
+            newTRAOA2.push(items[j-1]);
             var tdTableElements = trTableElements[j].querySelectorAll('td');
             for (var k = 1 ; k < tdTableElements.length; k++) {
                 var newTableData = document.createElement("td");
@@ -300,16 +316,18 @@ function calculateAHP() {
                     newTableData.innerHTML = parseNumber(currentElement.innerHTML);
                     columnSums[k-1] += parseNumber(currentElement.innerHTML);
                     newTRAOA.push(parseNumber(currentElement.innerHTML));
+                    newTRAOA2.push(currentElement.innerHTML);
                 }
                 else if (currentElement.tagName.toLowerCase() === 'input') {
                     newTableData.innerHTML = parseNumber(currentElement.value);
                     columnSums[k-1] += parseNumber(currentElement.value);
                     newTRAOA.push(parseNumber(currentElement.value));
+                    newTRAOA2.push(currentElement.value);
                 }
                 newTableRow.appendChild(newTableData);
             }
             newTable.appendChild(newTableRow)
-            step2AOA.push(newTRAOA);
+            step2AOA.push(newTRAOA2);
             step3AOA.push(newTRAOA);
         }
         step2AOA.push([]);
@@ -889,7 +907,7 @@ function calculateAHP() {
         newTRAOA.push("RANKING");
         newTR.appendChild(newTH);
         newTable.appendChild(newTR);
-        step7AOA.push([]);
+        step7AOA.push(newTRAOA);
 
         for (var j = 1; j < trTableElements.length; j++) {
             var rowSumOverallVector = 0;
@@ -950,13 +968,14 @@ function calculateAHP() {
         }
 
         var rankCounter = 0;
-        for (var j = step7AOA.length-2; j < step7AOA.length; j++) {
+        for (var j = step7AOA.length-3; j < step7AOA.length; j++) {
             step7AOA[j].push(ranks[rankCounter]);
             rankCounter++;
         }
     }
 
     var exportButtonXLSX = document.createElement("button");
+    exportButtonXLSX.id = "exportBtn";
     exportButtonXLSX.classList.add("styled-button");
     exportButtonXLSX.innerHTML = "EXPORT TO XLSX";
     exportButtonXLSX.onclick = function(){exportToXLSX("AHP_Export")};
