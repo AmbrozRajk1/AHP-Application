@@ -812,12 +812,6 @@ function calculateAHP() {
         }
     }
 
-    var exportButtonCSV = document.createElement("button");
-    exportButtonCSV.classList.add("styled-button");
-    exportButtonCSV.innerHTML = "EXPORT TO CSV";
-    exportButtonCSV.onclick = function(){exportToCSV("finalTable", "table1_export_csv")};
-    document.body.appendChild(exportButtonCSV);
-
     var exportButtonXLSX = document.createElement("button");
     exportButtonXLSX.classList.add("styled-button");
     exportButtonXLSX.innerHTML = "EXPORT TO XLSX";
@@ -849,27 +843,6 @@ function getRanks(nums) {
     }
   
     return ranks;
-}
-
-function exportToCSV(tableId, filename) {
-    var csv = [];
-    var rows = document.querySelectorAll(`#${tableId} tr`);
-  
-    rows.forEach(function (row) {
-      var rowData = [];
-      row.querySelectorAll("td, th").forEach(function (cell) {
-        rowData.push(cell.textContent);
-      });
-      csv.push(rowData.join(","));
-    });
-  
-    var csvContent = "data:text/csv;charset=utf-8," + csv.join("\n");
-    var encodedUri = encodeURI(csvContent);
-    var link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `${filename}.csv`);
-    document.body.appendChild(link);
-    link.click();
 }
 
 function exportToXLSX(tableId, filename) {
