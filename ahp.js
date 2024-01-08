@@ -968,7 +968,7 @@ function calculateAHP() {
         }
 
         var rankCounter = 0;
-        for (var j = step7AOA.length-3; j < step7AOA.length; j++) {
+        for (var j = step7AOA.length-items.length; j < step7AOA.length; j++) {
             step7AOA[j].push(ranks[rankCounter]);
             rankCounter++;
         }
